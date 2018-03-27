@@ -9,8 +9,8 @@ var socket = io();
 
 
 
-chatForm.onsubmit = (e) => {
+nameForm.onsubmit = (e) => {
 	e.preventDefault();
-
+	document.getElementById('nameScreen').style.display = 'none';
 	socket.emit('nameSubmit', chatInput.value);
 }
