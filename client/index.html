@@ -1,0 +1,29 @@
+<!DOCTYPEhtml>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>WezelChat!</title>
+		<link rel="stylesheet" href="/client/css/main.css" type="text/css"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="nameScreen">
+				<form id="nameForm">
+					<h1>What should we call you?</h1>
+					<input type="text" id="nameInput"></input>
+				</form>
+			</div>
+
+			<div id="chatWindow">
+				<ul id="chatList">
+					<li id="message-0000" class="message">This is a test message</li>
+				</ul>
+				<form id="chatForm">
+					<input type="text" id="chatInput">Type your message here!</input>
+				</form>
+			</div>
+		</div>
+		<script src="/client/js/client.js"></script>
+	</body>
+</html>
