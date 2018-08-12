@@ -1,35 +1,59 @@
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body{
+	min-height: 100vh;
+	height: 100vh;
+}
 #wrapper{
 	text-align: center;
 	width: 45%;
 	margin: 0 auto;
+
 }
 #nameScreen{
 	position: fixed;
 	left: 0;
 	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, .5)
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, .5);
 }
 
-#nameForm{
+#nameInput {
 	position: fixed;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
 	background: #38f1f7;
 	border-radius: 1.5em;
-	padding: .5em;
+	padding: .75em;
 	/* remove this */
 	border: 1px solid black;
-
 }
 
 #chatWindow {
 	width: 55%;
+	min-width: 500px;
 	margin: 0 auto;
 	background-color: #a3978d;
 	padding: 0;
+	height: 100vh;
+}
+
+
+#chatForm {
+	border-top: 1px outset black;
+	height: 5vh;
+	min-height: 45px;
+	margin-bottom: 0;
+}
+
+#chatInput {
+	margin-top: 2.5%;
+	margin-bottom: 2.5%;
+	border-radius: .5em;
+	padding: .1em;
+	width: 90%;
+	/*height: 90%;*/
 }
 
 #chatList{
@@ -38,7 +62,27 @@
 
 .message{
 	border: #898079 solid 1px;
+	text-align: left;
 	list-style-type: none;
 	padding: 1em;
 	margin: 0 auto;
+}
+
+
+/*Cell Phones*/
+
+@media only screen and (max-width: 700px) {
+	#wrapper {
+		width: 100vw;
+		height: 100vh;
+	}
+	#chatWindow {
+		width: 100vw;
+		padding: 0;
+		height: 100vh;
+	}
+
+	#chatInput {
+
+	}
 }
