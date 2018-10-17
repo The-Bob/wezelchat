@@ -3,12 +3,13 @@ body{
 	min-height: 100vh;
 	height: 100vh;
 }
-#wrapper{
-	text-align: center;
-	width: 45%;
-	margin: 0 auto;
 
+#wrapper{
+	display: flex;
+	justify-content: center;
+	text-align: center;
 }
+
 #nameScreen{
 	position: fixed;
 	left: 0;
