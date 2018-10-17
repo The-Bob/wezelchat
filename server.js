@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/client/index.html');
 });
 
-app.use('/client', express.static(__dirname + '/client'));
+app.use(express.static(__dirname + '/client'));
 
 serv.listen(port);
 console.log("Server started");
@@ -28,7 +28,8 @@ io.sockets.on('connection', (socket) => {
 	});
 
 	socket.on('chatSubmit', (data) => {
-			io.sockets.emit('updateChat', {text: `${socketList.get(socket.id)} says: ${data}`,id: Math.round(Math.random()*1000)});
-			console.log('message posted');
+		
+		io.sockets.emit('updateChat', {text: `${socketList.get(socket.id)} says: ${data}`,id: Math.round(Math.random()*1000)});
+		console.log(`${socketList.get(socket.id)} posted ${data}`);
 	});
 });
