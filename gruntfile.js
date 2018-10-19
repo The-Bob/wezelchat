@@ -67,6 +67,6 @@ module.exports = function(grunt){
   grunt.registerTask('test', ['jshint']);
 
   // the default task can be run just by typing "grunt" on the command line
-  grunt.registerTask('build', ['jshint', 'sass', 'uglify', 'copy']);
+  grunt.registerTask('build', ['sass', 'uglify', 'copy']);
 
 };
