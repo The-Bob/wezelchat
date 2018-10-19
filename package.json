@@ -4,13 +4,22 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "node --inspect server.js",
-    "start": "node server.js"
+    "postinstall": "grunt build",
+    "test": "node --inspect src/server.js",
+    "start": "node build/server.min.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
+    "grunt": "^1.0.3",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^2.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify-es": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
+    "grunt-contrib-watch": "^1.1.0",
+    "node-sass": "^4.9.4",
     "socket.io": "^2.0.4"
-  }
+  },
+  "devDependencies": {}
 }
