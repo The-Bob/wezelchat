@@ -21,6 +21,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify-es": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
     "grunt-contrib-watch": "^1.1.0",
+    "node-sass": "^4.9.4",
     "sass": "^1.14.3",
     "socket.io": "^2.1.1"
   },
