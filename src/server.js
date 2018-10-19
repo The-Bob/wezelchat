@@ -28,7 +28,7 @@ io.sockets.on('connection', (socket) => {
 	});
 
 	socket.on('chatSubmit', (data) => {
-		
+
 		io.sockets.emit('updateChat', {text: `${socketList.get(socket.id)} says: ${data}`,id: Math.round(Math.random()*1000)});
 		console.log(`${socketList.get(socket.id)} posted ${data}`);
 	});
