@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "grunt build",
     "test": "node --inspect src/server.js",
-    "start": "node build/server.js"
+    "start": "node build/server.min.js"
   },
   "author": "",
   "license": "ISC",
