@@ -27,8 +27,7 @@ body{
 	background: #38f1f7;
 	border-radius: 1.5em;
 	padding: .75em;
-	/* remove this */
-	border: 1px solid black;
+	border: none;
 }
 
 #chatWindow {
