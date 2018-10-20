@@ -1,7 +1,7 @@
 const sass = require('node-sass');
 module.exports = function(grunt){
   grunt.initConfig({
-    paths: {
+    vars: {
       resources: './src', // source files (scss)
       assets: './build'    // compiled files (css)
     },
@@ -13,8 +13,8 @@ module.exports = function(grunt){
       },
       dist: {
         files: {
-          '<%= paths.assets %>/<%= pkg.main.slice(0, -3) %>.min.js': ['<%= paths.resources %>/<%= pkg.main %>'],
-          '<%= paths.assets %>/client/js/client.js': ['<%= paths.resources %>/client/js/client.js']
+          '<%= vars.assets %>/<%= pkg.main.slice(0, -3) %>.min.js': ['<%= vars.resources %>/<%= pkg.main %>'],
+          '<%= vars.assets %>/client/js/client.js': ['<%= vars.resources %>/client/js/client.js']
         }
       }
     },
@@ -25,7 +25,7 @@ module.exports = function(grunt){
       },
       dist: {
         files: {
-          "<%= paths.assets %>/client/styles/main.css": "<%= paths.resources %>/client/styles/main.scss"
+          "<%=  vars.debuging ? vars.resources : vars.assets %>/client/styles/main.css": "<%=vars.resources %>/client/styles/main.scss"
         }
       }
     },
@@ -55,6 +55,12 @@ module.exports = function(grunt){
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint', 'qunit']
+    },
+    run: {
+      dev: {
+        cmd: 'node',
+        args: ['<%= vars.resources %>/server.js', '--inspect']
+      }
     }
   });
   grunt.loadNpmTasks('grunt-contrib-uglify-es');
@@ -62,11 +68,18 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-run');
 
   // this would be run by typing "grunt test" on the command line
   grunt.registerTask('test', ['jshint']);
 
   // the default task can be run just by typing "grunt" on the command line
   grunt.registerTask('build', ['sass', 'uglify', 'copy']);
+
+  grunt.registerTask('setForDebug', function(){
+    grunt.config.set('vars.debuging', 'true');
+  });
+
+  grunt.registerTask('debug', ['setForDebug','jshint', 'sass', 'run:dev']);
 
 };

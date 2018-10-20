@@ -9,7 +9,8 @@
   "scripts": {
     "postinstall": "grunt build",
     "test": "grunt test",
-    "start": "node build/server.min.js"
+    "start": "node build/server.min.js",
+    "debug": "grunt debug"
   },
   "author": "",
   "license": "ISC",
@@ -25,5 +26,7 @@
     "sass": "^1.14.3",
     "socket.io": "^2.1.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "grunt-run": "^0.8.1"
+  }
 }
