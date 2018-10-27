@@ -63,3 +63,4 @@ build
 test
 
 *.css
+*.map
