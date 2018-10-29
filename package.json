@@ -10,7 +10,7 @@
     "postinstall": "grunt build",
     "test": "grunt test",
     "start": "node build/server.min.js",
-    "debug": "grunt debug"
+    "dev": "grunt debug"
   },
   "author": "",
   "license": "ISC",
