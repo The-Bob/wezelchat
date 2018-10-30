@@ -9,3 +9,8 @@
 		align-items: center;
 	}
 }
+
+@mixin padding-sides($p) {
+	padding-left: $p;
+	padding-right: $p;
+}
