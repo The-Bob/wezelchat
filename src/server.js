@@ -1,7 +1,10 @@
+const xss = require('xss');
+
 const express = require('express');
 var app = express();
 var serv = require('http').Server(app);
 var port = process.env.PORT || 8080;
+
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/index.html');
@@ -28,7 +31,7 @@ io.sockets.on('connection', (socket) => {
   });
 
   socket.on('chatSubmit', (data) => {
-
+    data = xss(data);
     io.sockets.emit('updateChat', {text: `${socketList.get(socket.id)} says: ${data}`,id: Math.round(Math.random()*1000)});
     console.log(`${socketList.get(socket.id)} posted ${data}`);
   });
