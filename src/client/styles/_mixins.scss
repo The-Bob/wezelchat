@@ -1,16 +1,16 @@
 //Center via flexbox
 @mixin center($h, $v) {
-	display: flex;
-	@if $h {
-		justify-content: center;
-	}
+  display: flex;
+  @if $h {
+    justify-content: center;
+  }
 
-	@if $v {
-		align-items: center;
-	}
+  @if $v {
+    align-items: center;
+  }
 }
 
 @mixin padding-sides($p) {
-	padding-left: $p;
-	padding-right: $p;
+  padding-left: $p;
+  padding-right: $p;
 }
