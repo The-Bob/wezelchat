@@ -36,7 +36,7 @@ chatForm.onsubmit = (e) => {
 
   if(chatInput.value.length>0){
     socket.emit('chatSubmit',chatInput.value);
-
+    chatInput.placeholder = "Type your message here!";
     chatInput.focus();
   } else {
     chatInput.placeholder = "No blank messages!";
@@ -45,7 +45,21 @@ chatForm.onsubmit = (e) => {
 };
 
 socket.on('updateChat', (data) =>{
-  chatList.innerHTML += `<li id="message-${data.id}" class="message">${data.text}</li>`;
+  chatList.innerHTML += `<li id="message-${data.id}" class="message">${data.senderName} says: ${data.text}</li>`;
+  if(!scrolledAway){
+    chatList.scroll({
+      top: chatList.scrollHeight,
+      behavior: 'smooth'
+    });
+  } else {
+    unseenMessages++;
+    newMessageIndicator.innerHTML = `${unseenMessages} new`;
+    newMessageIndicator.style.display = "block";
+  }
+});
+
+socket.on('serverMessage', (data) =>{
+  chatList.innerHTML += `<li id="message-${data.id}" class="message server"><strong>The Server</strong> says: ${data.text}</li>`;
   if(!scrolledAway){
     chatList.scroll({
       top: chatList.scrollHeight,

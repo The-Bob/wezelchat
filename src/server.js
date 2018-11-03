@@ -31,8 +31,19 @@ io.sockets.on('connection', (socket) => {
   });
 
   socket.on('chatSubmit', (data) => {
-    data = xss(data);
-    io.sockets.emit('updateChat', {text: `${socketList.get(socket.id)} says: ${data}`,id: Math.round(Math.random()*1000)});
-    console.log(`${socketList.get(socket.id)} posted ${data}`);
+    if(data.length>0){
+      data = xss(data);
+      io.sockets.emit('updateChat', {
+        text: data,
+        senderName: socketList.get(socket.id),
+        id: Math.round(Math.random()*1000),
+      });
+      console.log(`${socketList.get(socket.id)} posted ${data}`);
+    } else{
+      socket.emit('serverMessage', {
+        text: `No blank messages buddy.  No getting around it.`,
+        id: Math.round(Math.random()*1000),
+      });
+    }
   });
 });
