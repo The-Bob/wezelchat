@@ -27,6 +27,11 @@ module.exports = function(grunt){
         files: {
           "<%=  vars.debuging ? vars.resources : vars.assets %>/client/styles/main.css": "<%=vars.resources %>/client/styles/main.scss"
         }
+      },
+      dev: {
+        files: {
+          "src/client/styles/main.css": "<%=vars.resources %>/client/styles/main.scss"
+        }
       }
     },
     jshint: {
@@ -53,21 +58,38 @@ module.exports = function(grunt){
       },
     },
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint', 'qunit']
+      css: {
+        files: ['src/client/styles/*.scss'],
+        tasks: ['sass:dev']
+      },
+      js: {
+        files: ['src/*.js'],
+        tasks: ['run:dev']
+      }
     },
     run: {
       dev: {
         cmd: 'node',
         args: ['<%= vars.resources %>/server.js', '--inspect']
       }
+    },
+    concurrent: {
+      dev: {
+        tasks: ['watch', 'run:dev'],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
+
     }
+
   });
   grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-run');
 
   // this would be run by typing "grunt test" on the command line
@@ -80,6 +102,6 @@ module.exports = function(grunt){
     grunt.config.set('vars.debuging', 'true');
   });
 
-  grunt.registerTask('debug', ['setForDebug','jshint', 'sass', 'run:dev']);
+  grunt.registerTask('debug', ['setForDebug','jshint', 'sass','concurrent:dev']);
 
 };
