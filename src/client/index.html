@@ -40,14 +40,15 @@
         </form>
       </div>
       <div id="chatWindow">
-        <ul id="chatList">
-                    <span id="newMessageIndicator">0 New</span>
-          <li id="message-0000" class="message">This is a test message</li>
 
+        <ul id="chatList">
+          <li id="message-0000" class="message">This is a test message</li>
         </ul>
 
-        <form id="chatForm">
-          <input type="text" id="chatInput" placeholder="Type your message here!"></input>
+        <span id="newMessageIndicator">0 New</span>
+
+        <form id="chatForm"  autocomplete="off">
+          <textarea type="text" id="chatInput" placeholder="Type your message here!"></textarea>
           <input type="submit" id="chatSubmit" value=">"></input>
         </form>
       </div>

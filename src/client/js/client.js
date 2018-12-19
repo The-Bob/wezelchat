@@ -44,8 +44,24 @@ chatForm.onsubmit = (e) => {
   chatInput.value = '';
 };
 
+//Make chatInput text area newline on shift
+chatInput.addEventListener('keydown', function(e){
+  if (e.keyCode === 13) {
+      if(e.shiftKey) {
+        console.log('shift+enter');
+        return true;
+      }else {
+        console.log('enter');
+        e.preventDefault();
+        chatSubmit.click();
+        return false;
+      }
+    }
+});
+
 socket.on('updateChat', (data) =>{
-  chatList.innerHTML += `<li id="message-${data.id}" class="message">${data.senderName} says: ${data.text}</li>`;
+  console.log(`new message ${data.text}`);
+  chatList.innerHTML += `<li id="message-${data.id}" class="message"><span>${data.senderName} says:</span><p>${data.text}</p></li>`;
   if(!scrolledAway){
     chatList.scroll({
       top: chatList.scrollHeight,

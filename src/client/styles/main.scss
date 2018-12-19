@@ -47,25 +47,46 @@ body{
   min-width: 500px;
   background-color: #a3978d;
   height: 100vh;
-
+  /*I am MOST DEFINATLY a potato*/
   #chatList{
     padding: 0;
     height: 95vh;
     overflow-y: auto;
 
-    #newMessageIndicator {
-      display: none;
-      position: absolute;
-      left: 50%;
-      top: 90%;
-      transform: translateX(-50%);
-      background-color: rgba(0, 0, 0, .25);
-      border-radius: 1.5em;
-      padding: .25em;
+    .message{
+      display: flex;
+      border: #898079 solid 1px;
+      text-align: left;
+      list-style-type: none;
+      min-height: 3em;
+      margin: 0 auto;
+
+      span {
+        border-right: #898079 solid 1px;
+        min-width: 7em;
+        padding: 1em;
+      }
+
+      p {
+        padding: 1em;
+        overflow-x: hidden;
+        overflow-wrap: break-word;
+        white-space: pre-line;
+      }
     }
   }
 
 
+  #newMessageIndicator {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 90%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, .25);
+    border-radius: 1.5em;
+    padding: .25em;
+  }
 
   #chatForm {
     border-top: 1px outset black;
@@ -76,10 +97,14 @@ body{
 
     #chatInput {
       border-radius: .5em;
-      padding: .5em;
+      padding: .25em;
       width: 90%;
-      height: 2em;
+      height: 2.65em;
+      resize: none;
+      overflow: auto;
+      font-family: inherit;
     }
+
 
     #chatSubmit {
       margin-left: 2.5%;
@@ -95,13 +120,7 @@ body{
 
 
 
-.message{
-  border: #898079 solid 1px;
-  text-align: left;
-  list-style-type: none;
-  padding: 1em;
-  margin: 0 auto;
-}
+
 
 
 /*Cell Phones*/
@@ -109,7 +128,7 @@ body{
 @media only screen and (max-width: 700px) {
   #wrapper {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
   }
   #chatWindow {
     width: 100vw;
