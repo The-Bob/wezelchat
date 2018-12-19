@@ -3,8 +3,18 @@ const xss = require('xss');
 const express = require('express');
 var app = express();
 var serv = require('http').Server(app);
-var port = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "dev";
 
+ var forceSsl = function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    }
+    return next();
+ };
+if (ENV != 'dev'){
+  app.use(forceSsl);
+}
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/index.html');
@@ -12,7 +22,7 @@ app.get('/', (req, res) => {
 
 app.use(express.static(__dirname + '/client'));
 
-serv.listen(port);
+serv.listen(PORT);
 console.log("Server started");
 
 var io = require('socket.io')(serv, {});
