@@ -4,7 +4,7 @@ const express = require('express');
 var app = express();
 var serv = require('http').Server(app);
 const PORT = process.env.PORT || 8080;
-const ENV = process.env.ENV || "dev";
+const ENV = process.env.NODE_ENV || "dev";
 
  var forceSsl = function (req, res, next) {
     if (req.headers['x-forwarded-proto'] !== 'https') {
